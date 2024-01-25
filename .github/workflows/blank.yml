@@ -22,8 +22,8 @@ jobs:
 
       - name: Add Target Repository as Remote
         run: |
-          git remote set-url origin https://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@github.com/whn1281/CloseSourceCode.git
-          git remote add target origin
+          git remote set-url main https://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@github.com/whn1281/CloseSourceCode.git
+          git remote add target main
         env:
           YOUR_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
           
