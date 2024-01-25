@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Source Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0 # 获取完整的提交历史记录
 
@@ -20,13 +20,8 @@ jobs:
           git config --global user.name "whn1281" # 设置提交者的姓名
           git config --global user.email "whn1281@126.com" # 设置提交者的电子邮件地址
 
-      - name: Add Target Repository as Remote
+      - name: Sync public code
         run: |
-          git remote set-url main https://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@github.com/whn1281/CloseSourceCode.git
-          git remote add target main
-        env:
-          YOUR_TOKEN: ${{ secrets.TARGET_REPO_TOKEN }}
-          
-      - name: Push Changes to Target Repository
-        run: |
-          git push --force target main # 将更改强制推送到目标仓库的main分支，可以根据你的需求进行更改
+          git remote add public https://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@github.com/whn1281/CloseSourceCode.git
+          git subtree split --prefix=public/ -b public-changes
+          git push -f public public-changes:main
