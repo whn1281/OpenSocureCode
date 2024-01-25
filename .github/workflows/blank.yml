@@ -22,6 +22,5 @@ jobs:
 
       - name: Sync public code
         run: |
-          git remote add public https://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@github.com/whn1281/CloseSourceCode.git
-          git subtree split --prefix=public/ -b public-changes
-          git push -f public public-changes:main
+          git remote add destination https://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@github.com/whn1281/CloseSourceCode.git
+          git push destination main:main --force
